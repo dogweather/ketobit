@@ -1,6 +1,7 @@
 <div class="jumbotron">
   <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+  <a href="/auth"><h2>Sign In with Fitbit</h2></a>
 </div>
 
 <div class="row marketing">
