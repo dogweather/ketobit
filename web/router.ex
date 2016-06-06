@@ -20,6 +20,11 @@ defmodule Ketobit.Router do
     resources "/users", UserController
   end
 
+  scope "/auth", MyApp do
+    pipe_through :browser
+    get "/", AuthController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Ketobit do
   #   pipe_through :api
