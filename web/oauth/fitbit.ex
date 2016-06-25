@@ -10,7 +10,7 @@ defmodule Fitbit do
   # Public API
 
   def new do
-    OAuth2.new([
+    OAuth2.Client.new([
       strategy: __MODULE__,
       client_id: System.get_env("CLIENT_ID"),
       client_secret: System.get_env("CLIENT_SECRET"),
@@ -25,7 +25,7 @@ defmodule Fitbit do
     OAuth2.Client.authorize_url!(new(), params)
   end
 
-  def get_token!(params \\ [], headers \\ []) do
+  def get_token!(params \\ [], _headers \\ []) do
     OAuth2.Client.get_token!(new(), params)
   end
 
