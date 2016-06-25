@@ -1,7 +1,7 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-  <a href="/auth"><h2>Sign In with Fitbit</h2></a>
+  <h2>Gain Total Control of<br>Your Carbs.</h2>
+  <p>Designed for use with the FITBIT® platform</p>
+  <a href="/auth"><h2>Sign in with Fitbit</h2></a>
 </div>
 
 <div class="row marketing">
@@ -35,3 +35,8 @@
     </ul>
   </div>
 </div>
+
+<section class=fineprint> Fitbit is a registered trademark and service mark of
+Fitbit, Inc. Ketobit is designed for use with the Fitbit platform. This product
+is not put out by Fitbit, and Fitbit does not service or warrant the
+functionality of this product.</section>
