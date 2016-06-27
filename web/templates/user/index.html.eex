@@ -5,8 +5,10 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th>User</th>
       <th>Access token</th>
       <th>Refresh token</th>
+      <th>Expires at</th>
 
       <th></th>
     </tr>
@@ -16,8 +18,10 @@
     <tr>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
+      <td><%= user.user_id %></td>
       <td><%= user.access_token %></td>
       <td><%= user.refresh_token %></td>
+      <td><%= user.expires_at %></td>
 
       <td class="text-right">
         <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>

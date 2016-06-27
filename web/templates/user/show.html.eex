@@ -13,6 +13,11 @@
   </li>
 
   <li>
+    <strong>User:</strong>
+    <%= @user.user_id %>
+  </li>
+
+  <li>
     <strong>Access token:</strong>
     <%= @user.access_token %>
   </li>
@@ -22,7 +27,13 @@
     <%= @user.refresh_token %>
   </li>
 
+  <li>
+    <strong>Expires at:</strong>
+    <%= @user.expires_at %>
+  </li>
+
 </ul>
+
 
 <%= link "Edit", to: user_path(@conn, :edit, @user) %>
 <%= link "Back", to: user_path(@conn, :index) %>

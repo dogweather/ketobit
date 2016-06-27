@@ -1,32 +1,43 @@
 <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+      <p>Oops, something went wrong! Please check the errors below:</p>
+      <ul>
+        <%= for {attr, message} <- f.errors do %>
+          <li><%= humanize(attr) %> <%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
+    <%= label f, :name, "Name", class: "control-label" %>
     <%= text_input f, :name, class: "form-control" %>
-    <%= error_tag f, :name %>
   </div>
 
   <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
+    <%= label f, :email, "Email", class: "control-label" %>
     <%= text_input f, :email, class: "form-control" %>
-    <%= error_tag f, :email %>
   </div>
 
   <div class="form-group">
-    <%= label f, :access_token, class: "control-label" %>
-    <%= textarea f, :access_token, class: "form-control" %>
-    <%= error_tag f, :access_token %>
+    <%= label f, :user_id, "User", class: "control-label" %>
+    <%= text_input f, :user_id, class: "form-control" %>
   </div>
 
   <div class="form-group">
-    <%= label f, :refresh_token, class: "control-label" %>
-    <%= textarea f, :refresh_token, class: "form-control" %>
-    <%= error_tag f, :refresh_token %>
+    <%= label f, :access_token, "Access token", class: "control-label" %>
+    <%= text_input f, :access_token, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :refresh_token, "Refresh token", class: "control-label" %>
+    <%= text_input f, :refresh_token, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :expires_at, "Expires at", class: "control-label" %>
+    <%= datetime_select f, :expires_at, class: "form-control" %>
   </div>
 
   <div class="form-group">

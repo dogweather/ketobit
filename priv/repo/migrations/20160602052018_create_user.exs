@@ -5,11 +5,12 @@ defmodule Ketobit.Repo.Migrations.CreateUser do
     create table(:users) do
       add :name, :string
       add :email, :string
-      add :access_token, :text
-      add :refresh_token, :text
+      add :user_id, :string
+      add :access_token, :binary
+      add :refresh_token, :binary
+      add :expires_at, :datetime
 
       timestamps
     end
-
   end
 end
