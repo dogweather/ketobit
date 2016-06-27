@@ -10,8 +10,8 @@ defmodule Ketobit.User do
     timestamps
   end
 
-  @required_fields ~w(name email access_token refresh_token)
-  @optional_fields ~w()
+  @required_fields ~w()
+  @optional_fields ~w(name email access_token refresh_token)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
