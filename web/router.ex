@@ -23,6 +23,7 @@ defmodule Ketobit.Router do
   scope "/auth", Ketobit do
     pipe_through :browser
     get "/", AuthController, :index
+    get "/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
