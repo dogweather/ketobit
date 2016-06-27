@@ -9,7 +9,7 @@ defmodule Ketobit.AuthController do
     token = Fitbit.get_token!(code: code)
     IO.inspect token
 
-    changeset = User.changeset(%Ketobit.User{},
+    changeset = Ketobit.User.changeset(%Ketobit.User{},
       %{user_id: token.other_params["user_id"],
         access_token: token.access_token,
         refresh_token: token.refresh_token
