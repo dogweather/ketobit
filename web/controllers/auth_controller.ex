@@ -8,6 +8,16 @@ defmodule Ketobit.AuthController do
   def callback(conn, %{"code" => code}) do
     token = Fitbit.get_token!(code: code)
     IO.inspect token
-    redirect conn, to: "/"
+
+    changeset = User.changeset(%Ketobit.User{},
+      %{user_id: token.other_params["user_id"],
+        access_token: token.access_token,
+        refresh_token: token.refresh_token
+      })
+    Repo.insert!(changeset)
+
+    conn
+      |> put_flash(:info, "User created successfully.")
+      |> redirect(to: "/")
   end
 end
