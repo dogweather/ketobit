@@ -6,6 +6,11 @@
 * [Fitbit Taglines and trademark rules](https://dev.fitbit.com/trademark)
 
 
+## TODO
+
+* Implement SSL with the new [Heroku beta program](https://devcenter.heroku.com/articles/ssl-beta).
+
+
 ## Phoenix Documentation
 
 ### To start your Phoenix app:
