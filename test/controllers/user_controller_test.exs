@@ -3,12 +3,12 @@ defmodule Ketobit.UserControllerTest do
 
   alias Ketobit.User
   @valid_attrs %{
-    name: "some content",
-    email: "some content",
-    user_id: "some content",
-    access_token: "some content",
-    refresh_token: "some content",
-    expires_at: "some content"
+    name: "Phoebe",
+    email: "phoebe@somewhere.com",
+    user_id: "12345",
+    access_token: "9999999",
+    refresh_token: "8888888",
+    expires_at: Ecto.DateTime.local
   }
   @invalid_attrs %{}
 
