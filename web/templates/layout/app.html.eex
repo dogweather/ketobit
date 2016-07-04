@@ -14,6 +14,18 @@
   <body>
     <div class="container">
       <header class="header">
+        <nav role="navigation">
+          <ul class="nav nav-pills pull-right">
+            <li>
+              <%= if is_bitstring(@current_user) do %>
+                <a href="/auth/logout">Sign out</a>
+              <% else %>
+                <a href="/auth">Sign in</a>
+              <% end %>
+            </li>
+          </ul>
+        </nav>
+
         <h1>Keto Bit</h1>
       </header>
 

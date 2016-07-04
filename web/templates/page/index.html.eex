@@ -1,8 +1,7 @@
-<div>user_id: <%= @current_user %></div>
-
 <div class="jumbotron">
   <h2>Gain Total Control of<br>Your Carbs.</h2>
   <p>Designed for use with the FITBIT® platform</p>
+
   <a href="/auth"><h2>Sign in with Fitbit</h2></a>
 </div>
 

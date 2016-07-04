@@ -26,7 +26,7 @@ defmodule Ketobit.Router do
 
     get "/", AuthController, :index
     get "/callback", AuthController, :callback
-    delete "/logout", AuthController, :delete
+    get "/logout", AuthController, :delete
   end
 
   # Fetch the current user from the session and add it to `conn.assigns`. This
