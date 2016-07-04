@@ -2,7 +2,9 @@
   <h2>Gain Total Control of<br>Your Carbs.</h2>
   <p>Designed for use with the FITBIT® platform</p>
 
-  <a href="/auth"><h2>Sign in with Fitbit</h2></a>
+  <%= if is_nil(@current_user) do %>
+    <a href="/auth"><h2>Sign in with Fitbit</h2></a>
+  <% end %>
 </div>
 
 
