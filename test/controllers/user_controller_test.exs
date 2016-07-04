@@ -2,7 +2,14 @@ defmodule Ketobit.UserControllerTest do
   use Ketobit.ConnCase
 
   alias Ketobit.User
-  @valid_attrs %{access_token: "some content", email: "some content", name: "some content", refresh_token: "some content"}
+  @valid_attrs %{
+    name: "some content",
+    email: "some content",
+    user_id: "some content",
+    access_token: "some content",
+    refresh_token: "some content",
+    expires_at: "some content"
+  }
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
