@@ -8,7 +8,7 @@ defmodule Ketobit.UserControllerTest do
     user_id: "12345",
     access_token: "9999999",
     refresh_token: "8888888",
-    expires_at: Ecto.DateTime.local
+    expires_at: Ecto.DateTime.utc
   }
   @invalid_attrs %{}
 
