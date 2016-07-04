@@ -5,3 +5,7 @@
 form.link, form.button {
   display: inline;
 }
+
+.jumbotron h1 {
+  font-size: 290%;
+}

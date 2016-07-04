@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2>Gain Total Control of<br>Your Carbs.</h2>
+  <h1>Gain Total Control of<br>Your Carbs.</h1>
   <p>Designed for use with the FITBIT® platform</p>
 
   <%= if is_nil(@current_user) do %>
