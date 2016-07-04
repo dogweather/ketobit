@@ -1,5 +1,6 @@
 defmodule Ketobit.AuthController do
   use Ketobit.Web, :controller
+  alias Ketobit.User
 
   def index(conn, _params) do
     redirect conn, external: Fitbit.authorize_url!(scope: "profile nutrition")
