@@ -1,6 +1,6 @@
 # Keto Bit
 
-![screenshot](https://raw.githubusercontent.com/dogweather/ketobit/master/docs/screenshot.jpg)
+![screenshot](https://raw.githubusercontent.com/dogweather/ketobit/master/docs/screenshot.png)
 
 
 ## Created thanks to these guides:
