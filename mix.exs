@@ -19,7 +19,7 @@ defmodule Ketobit.Mixfile do
   def application do
     [mod: {Ketobit, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :oauth2]]
+                    :phoenix_ecto, :postgrex, :oauth2, :timex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,7 +37,8 @@ defmodule Ketobit.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:oauth2, "~> 0.2"}]
+     {:oauth2, "~> 0.2"},
+     {:timex, "~> 2.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

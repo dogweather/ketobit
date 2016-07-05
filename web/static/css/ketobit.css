@@ -14,3 +14,10 @@ footer {
   text-align: right;
   margin-top: 4em;
 }
+
+.carb-budget h1 {
+  font-size: 300%
+}
+.budget-lead {
+  font-size: 90%
+}
