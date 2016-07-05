@@ -1,7 +1,6 @@
 defmodule Ketobit.AuthController do
   use Ketobit.Web, :controller
   use Timex
-  alias Ketobit.User
 
   def index(conn, _params) do
     redirect conn, external: Fitbit.authorize_url!(scope: "profile nutrition")
@@ -17,9 +16,17 @@ defmodule Ketobit.AuthController do
   def callback(conn, %{"code" => code}) do
     token = Fitbit.get_token!(code: code)
 
-    user_data = OAuth2.AccessToken.get!(token, "/1/user/-/profile.json").body
-    user_name = user_data["user"]["displayName"]
-    user_id   = token.other_params["user_id"]
+    %{body: %{
+      "user" => %{
+        "displayName" => user_name,
+        "timezone" => user_timezone_string,
+        "avatar" => avatar_url
+        }
+      }
+    } = OAuth2.AccessToken.get!(token, "/1/user/-/profile.json")
+    user_id = token.other_params["user_id"]
+
+    IO.inspect("Got user #{user_name} in timezone #{user_timezone_string} and avatar #{avatar_url}")
 
     # So far, we don't need to actually save any info in the database.
     #
@@ -32,13 +39,17 @@ defmodule Ketobit.AuthController do
     # Repo.insert!(changeset)
 
     # Get today's food log
-    # TODO: Ensure this is the *user's* current date (& timezone).
-    today    = DateTime.today
-    timezone = Timex.timezone("America/Los_Angeles", today)
-    {:ok, today_8601} = today
+    timezone = user_timezone_string
+      |> Timex.timezone(DateTime.now)
+      
+    {:ok, today_8601} = DateTime.now
       |> Timezone.convert(timezone)
       |> Timex.format("%Y-%m-%d", :strftime)
+
+    IO.inspect("Requesting food log for #{today_8601}")
+
     food_log = OAuth2.AccessToken.get!(token, "/1/user/-/foods/log/date/#{today_8601}.json").body
+    IO.inspect(food_log["summary"])
 
     # Calculate the info we're interested in
     net_carbs   = food_log["summary"]["carbs"] - food_log["summary"]["fiber"]
