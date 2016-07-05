@@ -1,5 +1,8 @@
 # Keto Bit
 
+![screenshot](https://raw.githubusercontent.com/dogweather/ketobit/master/docs/screenshot.jpg)
+
+
 ## Created thanks to these guides:
 
 * [Phoenix and Ecto: From `mix new` to Heroku](http://wsmoak.net/2015/07/12/phoenix-and-ecto-from-mix-new-to-heroku.html)
