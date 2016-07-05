@@ -22,6 +22,9 @@
                 <a href="/auth/logout">Sign out</a>
               <% end %>
             </li>
+            <li role=presentation>
+              <a href="https://twitter.com/keto_bit">@keto_bit</a>
+            </li>
           </ul>
         </nav>
 
