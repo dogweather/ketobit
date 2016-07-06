@@ -8,8 +8,6 @@ defmodule Ketobit.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :assign_current_user
-    plug :assign_net_carbs
-    plug :assign_keto_budget
   end
 
   pipeline :api do
@@ -36,13 +34,5 @@ defmodule Ketobit.Router do
   # `@current_user`.
   defp assign_current_user(conn, _) do
     assign(conn, :current_user, get_session(conn, :current_user))
-  end
-
-  defp assign_net_carbs(conn, _) do
-    assign(conn, :net_carbs, get_session(conn, :net_carbs))
-  end
-
-  defp assign_keto_budget(conn, _) do
-    assign(conn, :keto_budget, get_session(conn, :keto_budget))
   end
 end
