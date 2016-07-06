@@ -17,6 +17,14 @@ footer {
 .carb-budget h1 {
   font-size: 300%
 }
+
 .budget-lead {
   font-size: 90%
+}
+
+.avatar {
+  height: 42px;
+  width: 42px;
+  border: 2px solid #eee;
+  margin-right: 0.5em;
 }

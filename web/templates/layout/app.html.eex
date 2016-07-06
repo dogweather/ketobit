@@ -17,11 +17,14 @@
 
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-            <li role="presentation">
-              <%= if is_bitstring(@current_user) do %>
-                <a href="/auth/logout">Sign out</a>
-              <% end %>
-            </li>
+            <%= if is_bitstring(@current_user) do %>
+              <li role=presentation>
+                <img src="<%= @avatar_url %>" alt="avatar" class="avatar img-circle">
+              </li>
+              <li role=presentation>
+                  <a href="/auth/logout">Sign out</a>
+              </li>
+            <% end %>
           </ul>
         </nav>
 

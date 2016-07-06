@@ -55,6 +55,7 @@ defmodule Ketobit.PageController do
     conn
       |> put_flash(:info, "Hello #{user_name}!")
       |> assign(:keto_budget, round_decimal(keto_budget))
+      |> assign(:avatar_url, avatar_url)
       |> render("info.html")
   end
 
