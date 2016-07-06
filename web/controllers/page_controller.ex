@@ -37,7 +37,6 @@ defmodule Ketobit.PageController do
 
     %{"summary" => summary} = OAuth2.AccessToken.get!(token, "/1/user/-/foods/log/date/#{today_iso_8601}.json").body
     %{"carbs" => carbs, "fiber" => fiber, "calories" => calories} = summary
-    IO.inspect(summary)
 
     net_carbs   = carbs - fiber
     keto_budget = @default_carb_limit - net_carbs
