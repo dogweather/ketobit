@@ -22,9 +22,6 @@
                 <a href="/auth/logout">Sign out</a>
               <% end %>
             </li>
-            <li role=presentation>
-              <a href="https://twitter.com/keto_bit">@keto_bit</a>
-            </li>
           </ul>
         </nav>
 
@@ -39,11 +36,15 @@
       </div>
 
       <footer class="footer">
-        <p>
+        <p class="pull-right">
           &copy; 2016 <a href="http://weblaws.org/robb/about">Robb Shecter</a> |
           <a href="https://github.com/dogweather/ketobit">GitHub</a> |
           <a href="https://github.com/dogweather/ketobit/blob/master/License.md">MIT License</a>
         </p>
+
+        <div>
+          <a href="https://twitter.com/keto_bit">@keto_bit</a>
+        </div>
       </footer>
 
     </div> <!-- /container -->
