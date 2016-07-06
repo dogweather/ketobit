@@ -2,6 +2,8 @@ defmodule Ketobit.PageController do
   use Ketobit.Web, :controller
   use Timex
 
+  @default_carb_limit 20
+
   def index(conn, _params) do
     token = get_session(conn, :token)
     cond do
@@ -11,18 +13,17 @@ defmodule Ketobit.PageController do
   end
 
   defp welcome_page(conn) do
-    conn |> render("index.html")
+    render(conn, "index.html")
   end
 
   defp info_page(conn, token) do
-    %{body: %{
+    %{
       "user" => %{
         "displayName" => user_name,
         "timezone" => user_timezone_string,
         "avatar" => avatar_url
-        }
       }
-    } = OAuth2.AccessToken.get!(token, "/1/user/-/profile.json")
+    } = OAuth2.AccessToken.get!(token, "/1/user/-/profile.json").body
 
     IO.inspect("Got user #{user_name} in timezone #{user_timezone_string}")
 
@@ -35,14 +36,15 @@ defmodule Ketobit.PageController do
       |> Timex.format("%Y-%m-%d", :strftime)
 
     %{"summary" => summary} = OAuth2.AccessToken.get!(token, "/1/user/-/foods/log/date/#{today_iso_8601}.json").body
+    %{"carbs" => carbs, "fiber" => fiber, "calories" => calories} = summary
     IO.inspect(summary)
 
-    net_carbs   = summary["carbs"] - summary["fiber"]
-    keto_budget = round_decimal(20 - net_carbs)
+    net_carbs   = carbs - fiber
+    keto_budget = @default_carb_limit - net_carbs
 
     conn
       |> put_flash(:info, "Hello #{user_name}!")
-      |> assign(:keto_budget, keto_budget)
+      |> assign(:keto_budget, round_decimal(keto_budget))
       |> render("info.html")
   end
 
