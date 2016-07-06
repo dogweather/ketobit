@@ -24,7 +24,7 @@ defmodule Ketobit.PageController do
       }
     } = OAuth2.AccessToken.get!(token, "/1/user/-/profile.json")
 
-    IO.inspect("Got user #{user_name} in timezone #{user_timezone_string} and avatar #{avatar_url}")
+    IO.inspect("Got user #{user_name} in timezone #{user_timezone_string}")
 
     # Get today's food log
     timezone = user_timezone_string
@@ -34,18 +34,20 @@ defmodule Ketobit.PageController do
       |> Timezone.convert(timezone)
       |> Timex.format("%Y-%m-%d", :strftime)
 
-    IO.inspect("Requesting food log for #{today_iso_8601}")
-
     %{"summary" => summary} = OAuth2.AccessToken.get!(token, "/1/user/-/foods/log/date/#{today_iso_8601}.json").body
     IO.inspect(summary)
 
-    # Calculate the info we're interested in
     net_carbs   = summary["carbs"] - summary["fiber"]
-    keto_budget = 20 - net_carbs
+    keto_budget = round_decimal(20 - net_carbs)
 
     conn
       |> put_flash(:info, "Hello #{user_name}!")
       |> assign(:keto_budget, keto_budget)
       |> render("info.html")
+  end
+
+  # Format an int or float safely to one decimal point.
+  defp round_decimal(number) do
+    Float.floor(number / 1, 1)
   end
 end
