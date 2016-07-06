@@ -1,0 +1,6 @@
+<div class="carb-budget jumbotron">
+  <h1>
+    <strong><%= Float.floor(@keto_budget / 1, 1) %></strong>
+    <span class="text-muted budget-lead">net carbs<br>remaining today</span>
+  </h1>
+</div>

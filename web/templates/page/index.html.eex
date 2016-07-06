@@ -1,23 +1,10 @@
-<%= if is_nil(@current_user) do %>
-  <div class="jumbotron">
-    <h1>Gain Total Control of<br>Your Carbs.</h1>
-    <p>Designed for use with the FITBIT® platform</p>
+<div class="jumbotron">
+  <h1>Gain Total Control of<br>Your Carbs.</h1>
+  <p>Designed for use with the FITBIT® platform</p>
+  <a href="/auth"><h2>Sign in with Fitbit</h2></a>
+</div>
 
-    <%= if is_nil(@current_user) do %>
-      <a href="/auth"><h2>Sign in with Fitbit</h2></a>
-    <% end %>
-  </div>
-
-
-  <section class=fineprint> Fitbit is a registered trademark and service mark of
-  Fitbit, Inc. Ketobit is designed for use with the Fitbit platform. This product
-  is not put out by Fitbit, and Fitbit does not service or warrant the
-  functionality of this product.</section>
-<% else %>
-  <div class="carb-budget jumbotron">
-    <h1>
-      <strong><%= Float.floor(@keto_budget / 1, 1) %></strong>
-      <span class="text-muted budget-lead">net carbs<br>remaining today</span>
-    </h1>
-  </div>
-<% end %>
+<section class=fineprint> Fitbit is a registered trademark and service mark of
+Fitbit, Inc. Ketobit is designed for use with the Fitbit platform. This product
+is not put out by Fitbit, and Fitbit does not service or warrant the
+functionality of this product.</section>

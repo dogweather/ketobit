@@ -6,15 +6,15 @@ defmodule Ketobit.PageController do
     token = get_session(conn, :token)
     cond do
       is_nil(token) -> welcome_page(conn)
-      true          -> signed_in_page(conn, token)
+      true          -> info_page(conn, token)
     end
   end
 
   defp welcome_page(conn) do
-    render conn, "index.html"
+    conn |> render("index.html")
   end
 
-  defp signed_in_page(conn, token) do
+  defp info_page(conn, token) do
     %{body: %{
       "user" => %{
         "displayName" => user_name,
@@ -46,6 +46,6 @@ defmodule Ketobit.PageController do
     conn
       |> put_flash(:info, "Hello #{user_name}!")
       |> assign(:keto_budget, keto_budget)
-      |> render("index.html")
+      |> render("info.html")
   end
 end
