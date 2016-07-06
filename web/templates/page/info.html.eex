@@ -1,6 +1,12 @@
 <div class="carb-budget jumbotron">
   <h1>
-    <strong><%= @keto_budget %></strong>
-    <span class="text-muted budget-lead">net carbs<br>remaining today</span>
+    <%= if @keto_budget < 0 do %>
+      <span class="text-muted budget-lead">You're over by</span>
+      <strong><%= @keto_budget * -1 %></strong>
+      <span class="text-muted budget-lead">carbs</span>    
+    <% else %>
+      <strong><%= @keto_budget %></strong>
+      <span class="text-muted budget-lead">net carbs<br>remaining today</span>
+    <% end %>
   </h1>
 </div>
