@@ -1,6 +1,7 @@
 defmodule Ketobit.PageController do
   use Ketobit.Web, :controller
   use Timex
+  require Logger
 
   @default_carb_limit 20
 
@@ -17,13 +18,23 @@ defmodule Ketobit.PageController do
   end
 
   defp info_page(conn, token) do
+    case OAuth2.AccessToken.get(token, "/1/user/-/profile.json") do
+      {:ok, %OAuth2.Response{status_code: 401}} ->
+        # TODO: Use the proper refresh token procedure
+        redirect(conn, to: "/auth")
+      {:ok, %OAuth2.Response{status_code: 200, body: body}} ->
+        info_page(conn, token, body)
+      {:error, %OAuth2.Error{reason: reason}} ->
+        Logger.error("Error: #{inspect reason}")
+    end
+  end
+
+  defp info_page(conn, token, %{"user" => user_data}) do
     %{
-      "user" => %{
-        "displayName" => user_name,
-        "timezone" => user_timezone_string,
-        "avatar" => avatar_url
-      }
-    } = OAuth2.AccessToken.get!(token, "/1/user/-/profile.json").body
+      "displayName" => user_name,
+      "timezone" => user_timezone_string,
+      "avatar" => avatar_url
+    } = user_data
 
     IO.inspect("Got user #{user_name} in timezone #{user_timezone_string}")
 
