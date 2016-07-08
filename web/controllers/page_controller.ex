@@ -53,7 +53,6 @@ defmodule Ketobit.PageController do
     keto_budget = @default_carb_limit - net_carbs
 
     conn
-      |> put_flash(:info, "Hello #{user_name}!")
       |> assign(:keto_budget, round_decimal(keto_budget))
       |> assign(:avatar_url, avatar_url)
       |> render("info.html")
