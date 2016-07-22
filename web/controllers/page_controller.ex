@@ -32,22 +32,11 @@ defmodule Ketobit.PageController do
   defp info_page(conn, token, %{"user" => user_data}) do
     %{
       "displayName" => user_name,
-      "timezone" => user_timezone_string,
+      "timezone" => tz,
       "avatar" => avatar_url
     } = user_data
 
-    IO.inspect("Got user #{user_name} in timezone #{user_timezone_string}")
-
-    # Get today's food log
-    timezone = user_timezone_string
-      |> Timex.timezone(DateTime.now)
-
-    {:ok, today_iso_8601} = DateTime.now
-      |> Timezone.convert(timezone)
-      |> Timex.format("%Y-%m-%d", :strftime)
-
-    %{"summary" => summary} = OAuth2.AccessToken.get!(token, "/1/user/-/foods/log/date/#{today_iso_8601}.json").body
-    %{"carbs" => carbs, "fiber" => fiber} = summary
+    %{"carbs" => carbs, "fiber" => fiber} = fitbit_food_summary(token, today(tz))
 
     net_carbs   = carbs - fiber
     keto_budget = @default_carb_limit - net_carbs
@@ -58,8 +47,28 @@ defmodule Ketobit.PageController do
       |> render("info.html")
   end
 
+
+  defp fitbit_food_summary(token, date) do
+    path = "/1/user/-/foods/log/date/#{iso_8601(date)}.json"
+    %{"summary" => summary} = OAuth2.AccessToken.get!(token, path).body
+    summary
+  end
+
+
   # Format an int or float safely to one decimal point.
   defp round_decimal(number) do
     Float.floor(number / 1, 1)
+  end
+
+
+  defp today(tz) do
+    timezone = tz |> Timex.timezone(DateTime.now)
+    DateTime.now |> Timezone.convert(timezone)
+  end
+
+
+  defp iso_8601(date) do
+    {:ok, iso_8601} = Timex.format(date, "%Y-%m-%d", :strftime)
+    iso_8601
   end
 end
