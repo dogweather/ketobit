@@ -1,8 +1,9 @@
 defmodule Ketobit.Math do
 
-  # Format an int or float safely to one decimal point.
-  def round_decimal(number) do
-    round(number * 10) / 10
+  # Format to one decimal point
+  @spec round_decimal(number) :: float
+  def round_decimal(n) when is_number(n) do
+    round(n * 10) / 10
   end
 
 end
