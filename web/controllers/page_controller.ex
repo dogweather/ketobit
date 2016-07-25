@@ -53,7 +53,7 @@ defmodule Ketobit.PageController do
 
 
   defp fitbit_food_summary(token, date) do
-    path = "/1/user/-/foods/log/date/#{iso_8601(date)}.json"
+    path = "/1/user/-/foods/log/date/#{Ketobit.Date.iso_8601(date)}.json"
     %{"summary" => summary} = OAuth2.AccessToken.get!(token, path).body
     summary
   end
@@ -64,9 +64,4 @@ defmodule Ketobit.PageController do
     DateTime.now |> Timezone.convert(timezone)
   end
 
-
-  defp iso_8601(date) do
-    {:ok, iso_8601} = Timex.format(date, "%Y-%m-%d", :strftime)
-    iso_8601
-  end
 end
