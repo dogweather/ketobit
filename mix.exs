@@ -38,6 +38,7 @@ defmodule Ketobit.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:oauth2, "~> 0.2"},
+     {:dialyxir, "~> 0.3.5", only: [:dev]},
      {:timex, "~> 2.0"}]
   end
 
