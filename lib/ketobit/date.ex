@@ -3,7 +3,7 @@ defmodule Ketobit.Date do
 
   @spec today(String.t) :: DateTime.t
   def today(in_timezone) when is_bitstring(in_timezone) do
-    Timezone.convert(DateTime.now, in_timezone)
+    DateTime.now |> Timezone.convert(in_timezone)
   end
 
 
