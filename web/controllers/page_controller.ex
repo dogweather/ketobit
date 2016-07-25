@@ -5,6 +5,7 @@ defmodule Ketobit.PageController do
 
   @default_carb_limit 20
 
+
   def index(conn, _params) do
     token = get_session(conn, :token)
     cond do
@@ -13,9 +14,11 @@ defmodule Ketobit.PageController do
     end
   end
 
+
   defp welcome_page(conn) do
     render(conn, "index.html")
   end
+
 
   defp info_page(conn, token) do
     case OAuth2.AccessToken.get(token, "/1/user/-/profile.json") do
@@ -29,9 +32,10 @@ defmodule Ketobit.PageController do
     end
   end
 
+
   defp info_page(conn, token, %{"user" => user_data}) do
     %{
-      "displayName" => user_name,
+      "displayName" => _user_name,
       "timezone" => tz,
       "avatar" => avatar_url
     } = user_data
@@ -42,7 +46,7 @@ defmodule Ketobit.PageController do
     keto_budget = @default_carb_limit - net_carbs
 
     conn
-      |> assign(:keto_budget, round_decimal(keto_budget))
+      |> assign(:keto_budget, Ketobit.Math.round_decimal(keto_budget))
       |> assign(:avatar_url, avatar_url)
       |> render("info.html")
   end
@@ -52,12 +56,6 @@ defmodule Ketobit.PageController do
     path = "/1/user/-/foods/log/date/#{iso_8601(date)}.json"
     %{"summary" => summary} = OAuth2.AccessToken.get!(token, path).body
     summary
-  end
-
-
-  # Format an int or float safely to one decimal point.
-  defp round_decimal(number) do
-    Float.floor(number / 1, 1)
   end
 
 
