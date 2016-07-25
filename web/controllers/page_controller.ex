@@ -38,9 +38,12 @@ defmodule Ketobit.PageController do
       "displayName" => _user_name,
       "timezone" => tz,
       "avatar" => avatar_url
-    } = user_data
+      } = user_data
 
-    %{"carbs" => carbs, "fiber" => fiber} = fitbit_food_summary(token, today(tz))
+    %{
+      "carbs" => carbs,
+      "fiber" => fiber
+      } = fitbit_food_summary(token, Ketobit.Date.today(tz))
 
     net_carbs   = carbs - fiber
     keto_budget = @default_carb_limit - net_carbs
@@ -52,16 +55,10 @@ defmodule Ketobit.PageController do
   end
 
 
-  defp fitbit_food_summary(token, date) do
+  defp fitbit_food_summary(token, date = %DateTime{}) do
     path = "/1/user/-/foods/log/date/#{Ketobit.Date.iso_8601(date)}.json"
     %{"summary" => summary} = OAuth2.AccessToken.get!(token, path).body
     summary
-  end
-
-
-  defp today(tz) do
-    timezone = tz |> Timex.timezone(DateTime.now)
-    DateTime.now |> Timezone.convert(timezone)
   end
 
 end
