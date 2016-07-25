@@ -2,9 +2,8 @@ defmodule Ketobit.Date do
   use Timex
 
   @spec today(String.t) :: DateTime.t
-  def today(tz) when is_bitstring(tz) do
-    timezone = Timex.timezone(tz, DateTime.now)
-    Timezone.convert(DateTime.now, timezone)
+  def today(in_timezone) when is_bitstring(in_timezone) do
+    Timezone.convert(DateTime.now, in_timezone)
   end
 
 
