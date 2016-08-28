@@ -1,24 +1,24 @@
+import Ketobit.Math
+
 defmodule Ketobit.MathTest do
   use Ketobit.ModelCase
 
-  test "round_decimal handles integers" do
-    rounded = Ketobit.Math.round_decimal(20)
-    assert 20.0 = rounded
+  # round_decimal
+
+  test "handles integers" do
+    assert 20.0 = round_decimal(20)
   end
 
-  test "round_decimal rounds up" do
-    rounded = Ketobit.Math.round_decimal(5.99)
-    assert 6.0 = rounded
+  test "rounds up" do
+    assert 6.0 = round_decimal(5.99)
   end
 
-  test "round_decimal rounds down" do
-    rounded = Ketobit.Math.round_decimal(5.14147469)
-    assert 5.1 = rounded
+  test "rounds down" do
+    assert 5.1 = round_decimal(5.14147469)
   end
 
-  test "round_decimal handles zero" do
-    rounded = Ketobit.Math.round_decimal(0)
-    assert 0.0 = rounded
+  test "handles zero" do
+    assert 0.0 = round_decimal(0)
   end
 
 end
