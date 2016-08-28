@@ -2,8 +2,6 @@
 
 ![screenshot](https://raw.githubusercontent.com/dogweather/ketobit/master/docs/ketobit-screenshot-small.png)
 
-(Testing)
-
 
 ## Created thanks to these guides:
 
