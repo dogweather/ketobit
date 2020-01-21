@@ -9,7 +9,7 @@ defmodule Ketobit.User do
     field :refresh_token, :binary
     field :expires_at, Ecto.DateTime
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w()
